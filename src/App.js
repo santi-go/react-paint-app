@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import HelloWorld from './components/HelloWorld/HelloWorld'
+import Canvas from './components/Canvas/Canvas'
 
 const App = () => {
   return (
-    <HelloWorld></HelloWorld>
+    <Canvas></Canvas>
   );
 }
 

@@ -30,8 +30,7 @@
     ]
   },
   "devDependencies": {
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
+    "canvas-prebuilt": "^1.6.11",
     "jest": "^24.9.0"
   }
 }
