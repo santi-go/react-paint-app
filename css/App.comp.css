@@ -7,10 +7,9 @@
   font-size: 17px;
   padding: 16px 31px;
   text-decoration: none; }
-
-.green-btn {
-  background-color: #44c767;
-  border: 1px solid #18ab29; }
+  .btn .green-btn {
+    background-color: #44c767;
+    border: 1px solid #18ab29; }
 
 .btn:hover {
   background-color: #5cbf2a; }
