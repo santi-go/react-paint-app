@@ -1,7 +1,7 @@
 import React from 'react';
-import './SelectColor.css';
+import './Button.css';
 
-class SelectColor extends React.Component {
+class Button extends React.Component {
     constructor(...props) {
         super(...props);
         this.state = {
@@ -12,14 +12,14 @@ class SelectColor extends React.Component {
     
     render() {
         const {
-            selectColor
+            type
         } = this.props;
         return (
-            <div className={selectColor}>
-                Buttons!
-            </div>
+            <button className={type}>
+                button
+            </button>
         );
     }
 }
 
-export default SelectColor;
+export default Button;
