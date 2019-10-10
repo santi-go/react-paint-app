@@ -5,7 +5,7 @@ function Button(props){
         <button 
             className={props.className}
             onClick={props.onClick}
-        >{props.isOn ? "On" : "Off"}</button>
+        ></button>
     );
 }
 

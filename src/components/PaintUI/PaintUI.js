@@ -12,9 +12,7 @@ class PaintUI extends React.Component {
                 { name: 'green', className: "btn green-btn"},
                 { name: 'red', className: "btn red-btn"}
             ],
-            activeColor: { name: 'black', className: "btn black-btn"},
-            isOn: false
-
+            activeColor: { name: 'green', className: "btn green-btn"},
         }
 
         this.handleActiveColor = this.handleActiveColor.bind(this);
@@ -24,11 +22,20 @@ class PaintUI extends React.Component {
     handleActiveColor(color) {
         this.setState({activeColor: color});
     }
-
+ 
     handleClick() {
         this.setState(prevState => ({
             isOn: !prevState.isOn
         }));
+    }
+
+    renderButton(i) {
+        return (
+            <Button 
+                className={this.state.colors[i].className} 
+                onClick={() => this.handleActiveColor(this.state.colors[i])}
+            ></Button>
+        );
       }
     
     render() {
@@ -36,12 +43,24 @@ class PaintUI extends React.Component {
             className
         } = this.props;
 
+        const canvasProps = {
+            style: {
+              background: 'tomato',
+            },
+            brushCol: this.state.activeColor.name,
+            lineWidth: 10,
+            className: 'paint',
+            height: 500,
+            width: 500,
+            onDraw: () => { console.log('i have drawn!'); },
+          };
+
         return (
             <div className={className}>
-                <Canvas></Canvas>
-                <Button className="btn black-btn" onClick={this.handleClick} isOn={this.state.isOn}></Button>
-                <Button className="btn green-btn"></Button>
-                <Button className="btn red-btn"></Button>
+                <Canvas{...canvasProps}></Canvas>
+                {this.renderButton(0)}
+                {this.renderButton(1)}
+                {this.renderButton(2)}
             </div>
         );
     }

@@ -2,17 +2,17 @@ import React from 'react';
 import './Canvas.scss'
 
 class Canvas extends React.Component {
-    static defaultProps = {
-        style: {
-          background: 'green',
-        },
-        brushCol: '#ffffff',
-        lineWidth: 10,
-        className: 'canvas',
-        height: 500,
-        width: 500,
-        onDraw: () => { console.log('i have drawn!'); },
-    };
+    // static defaultProps = {
+    //     style: {
+    //       background: 'green',
+    //     },
+    //     strokeStyle: '#7d7d7d',
+    //     lineWidth: 10,
+    //     className: 'canvas',
+    //     height: 500,
+    //     width: 500,
+    //     onDraw: () => { console.log('i have drawn!'); },
+    // };
 
     constructor(...props) {
         super(...props);
@@ -24,28 +24,34 @@ class Canvas extends React.Component {
     }
 
     componentDidMount() {
-        const { currentColor, lineWidth } = this.props;
+        const { brushCol, lineWidth } = this.props;
         const canvas = this.refs.canvas;
 
         this.ctx = canvas.getContext('2d');
         this.ctx.lineWidth = lineWidth;
-        this.ctx.strokeStyle = currentColor;
+        this.ctx.strokeStyle = brushCol;
         this.ctx.lineJoin = this.ctx.lineCap = 'round';
 
         this.bb = canvas.getBoundingClientRect();
     }
-
+    
     mouseDown = e => {
+        const { brushCol} = this.props;
+
         if (!this.state.mouseDown) this.setState({ mouseDown: true });
-    
+        
+        this.ctx.strokeStyle = brushCol;
+
         this.setState({
-          mouseLocation: [e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY],
+          mouseLocation: [e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY],          
         });
-    
+        
         this.ctx.moveTo(
           (e.pageX || e.touches[0].pageX) - this.bb.left,
           (e.pageY || e.touches[0].pageY) - this.bb.top
         );
+
+        this.ctx.beginPath();
     }
 
     mouseUp = () => (this.setState({ mouseDown: false }));
