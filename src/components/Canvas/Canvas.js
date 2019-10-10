@@ -1,5 +1,5 @@
 import React from 'react';
-import './Canvas.css'
+import './Canvas.scss'
 
 class Canvas extends React.Component {
     static defaultProps = {

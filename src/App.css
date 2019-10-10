@@ -11,9 +11,20 @@
 .green-btn {
   background-color: #44c767;
   border: 1px solid #18ab29; }
+  .green-btn:hover {
+    background-color: #5cbf2a; }
 
-.btn:hover {
-  background-color: #5cbf2a; }
+.red-btn {
+  background-color: #c74444;
+  border: 1px solid #ab1818; }
+  .red-btn:hover {
+    background-color: #bf2a2a; }
+
+.black-btn {
+  background-color: #161616;
+  border: 1px solid #161616; }
+  .black-btn:hover {
+    background-color: #000000; }
 
 .btn:active {
   position: relative;
