@@ -1,4 +1,4 @@
-.btn {
+.color-btn {
   border-radius: 28px;
   display: inline-block;
   cursor: pointer;
@@ -7,6 +7,9 @@
   font-size: 17px;
   padding: 16px 31px;
   text-decoration: none; }
+  .color-btn:active {
+    position: relative;
+    top: 1px; }
 
 .green-btn {
   background-color: #44c767;
@@ -26,6 +29,22 @@
   .black-btn:hover {
     background-color: #000000; }
 
-.btn:active {
-  position: relative;
-  top: 1px; }
+.width-btn {
+  background: linear-gradient(to bottom, #dbe6c4 5%, #9ba892 100%);
+  background-color: #dbe6c4;
+  border-radius: 7px;
+  border: 1px solid #b2b8ad;
+  display: inline-block;
+  cursor: pointer;
+  color: #757d6f;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 7px 58px;
+  text-decoration: none; }
+  .width-btn:hover {
+    background: linear-gradient(to bottom, #9ba892 5%, #dbe6c4 100%);
+    background-color: #9ba892; }
+  .width-btn:active {
+    position: relative;
+    top: 1px; }

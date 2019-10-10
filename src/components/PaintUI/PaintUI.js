@@ -1,6 +1,7 @@
 import React from 'react';
-import Canvas from '../Canvas/Canvas'
-import Button from '../Button/Button'
+import Canvas from '../Canvas/Canvas';
+import Button from '../Button/Button';
+import SelectColor from '../SelectColor/SelectColor';
 import './PaintUI.scss';
 
 class PaintUI extends React.Component {
@@ -8,35 +9,49 @@ class PaintUI extends React.Component {
         super(...props);
         this.state = {
             colors: [
-                { name: 'black', className: "btn black-btn"},
-                { name: 'green', className: "btn green-btn"},
-                { name: 'red', className: "btn red-btn"}
+                { name: 'black', className: "color-btn black-btn"},
+                { name: 'green', className: "color-btn green-btn"},
+                { name: 'red', className: "color-btn red-btn"}
             ],
             activeColor: { name: 'green', className: "btn green-btn"},
+            widths: [
+                { width: 2, className: "width-btn extra-thin-btn"},
+                { width: 5, className: "width-btn thin-btn"},
+                { width: 10, className: "width-btn medium-btn"},
+                { width: 20, className: "width-btn large-btn"}
+            ],
+            activeWidth: { width: 5, className: "width-btn thin-btn"},
         }
 
         this.handleActiveColor = this.handleActiveColor.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleActiveWidth = this.handleActiveWidth.bind(this);
     }
 
     handleActiveColor(color) {
         this.setState({activeColor: color});
     }
  
-    handleClick() {
-        this.setState(prevState => ({
-            isOn: !prevState.isOn
-        }));
+    handleActiveWidth(width) {
+        this.setState({activeWidth: width});
     }
 
-    renderButton(i) {
+    // renderColorButton(i) {
+    //     return (
+    //         <Button 
+    //             className={this.state.colors[i].className} 
+    //             onClick={() => this.handleActiveColor(this.state.colors[i])}
+    //         ></Button>
+    //     );
+    // }
+
+    renderWidthButton(i) {
         return (
             <Button 
-                className={this.state.colors[i].className} 
-                onClick={() => this.handleActiveColor(this.state.colors[i])}
+                className={this.state.widths[i].className} 
+                onClick={() => this.handleActiveWidth(this.state.widths[i])}
             ></Button>
         );
-      }
+    }
     
     render() {
         const {
@@ -48,19 +63,20 @@ class PaintUI extends React.Component {
               background: 'tomato',
             },
             brushCol: this.state.activeColor.name,
-            lineWidth: 10,
+            lineWidth: this.state.activeWidth.width,
             className: 'paint',
             height: 500,
             width: 500,
-            onDraw: () => { console.log('i have drawn!'); },
-          };
+        };
 
         return (
             <div className={className}>
                 <Canvas{...canvasProps}></Canvas>
-                {this.renderButton(0)}
-                {this.renderButton(1)}
-                {this.renderButton(2)}
+                <SelectColor{...this.state} onClick={this.handleActiveColor}></SelectColor>
+                {this.renderWidthButton(0)}
+                {this.renderWidthButton(1)}
+                {this.renderWidthButton(2)}
+                {this.renderWidthButton(3)}
             </div>
         );
     }

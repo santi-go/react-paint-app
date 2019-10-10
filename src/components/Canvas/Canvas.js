@@ -2,18 +2,6 @@ import React from 'react';
 import './Canvas.scss'
 
 class Canvas extends React.Component {
-    // static defaultProps = {
-    //     style: {
-    //       background: 'green',
-    //     },
-    //     strokeStyle: '#7d7d7d',
-    //     lineWidth: 10,
-    //     className: 'canvas',
-    //     height: 500,
-    //     width: 500,
-    //     onDraw: () => { console.log('i have drawn!'); },
-    // };
-
     constructor(...props) {
         super(...props);
 
@@ -36,11 +24,12 @@ class Canvas extends React.Component {
     }
     
     mouseDown = e => {
-        const { brushCol} = this.props;
+        const { brushCol, lineWidth} = this.props;
 
         if (!this.state.mouseDown) this.setState({ mouseDown: true });
         
         this.ctx.strokeStyle = brushCol;
+        this.ctx.lineWidth = lineWidth;
 
         this.setState({
           mouseLocation: [e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY],          
@@ -78,7 +67,6 @@ class Canvas extends React.Component {
             className,
             width,
             height,
-            onDraw,
             style,
         } = this.props;
         return (
@@ -88,7 +76,6 @@ class Canvas extends React.Component {
                         className={`${className}__canvas`}
                         width={width}
                         height={height}
-                        onClick={onDraw}
                         style={
                             Object.assign({}, style, {
                                 width: this.props.width,
