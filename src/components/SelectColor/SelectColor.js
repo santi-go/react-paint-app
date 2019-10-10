@@ -13,12 +13,26 @@ class SelectColor extends React.Component {
     }
 
     render() {
+        const label = "SELECT A COLOR:"
         return (
             <div className="select-color">
-                <div className="select-color label"></div>
+                <div className="select-color label">{label}</div>
                 {this.renderColorButton(0)}
                 {this.renderColorButton(1)}
                 {this.renderColorButton(2)}
+                {this.renderColorButton(3)}
+                {this.renderColorButton(4)}
+                {this.renderColorButton(5)}
+                {this.renderColorButton(6)}
+                {this.renderColorButton(7)}
+                {this.renderColorButton(8)}
+                {this.renderColorButton(9)}
+                {this.renderColorButton(10)}
+                {this.renderColorButton(11)}
+                {this.renderColorButton(12)}
+                {this.renderColorButton(13)}
+                {this.renderColorButton(14)}
+                {this.renderColorButton(15)}
             </div>
         );
     }

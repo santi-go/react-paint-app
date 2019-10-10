@@ -1,11 +1,14 @@
 import React from 'react';
 
 function Button(props){
+    const line = "line"
     return (
         <button 
             className={props.className}
             onClick={props.onClick}
-        ></button>
+        >
+        <div className={line}></div>    
+        </button>
     );
 }
 

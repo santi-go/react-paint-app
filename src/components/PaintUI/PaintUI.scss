@@ -1,0 +1,41 @@
+.paint-ui {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 60%;
+    height: 500px;
+    background-color:azure;
+    border-radius:15px;
+    
+    .paint {
+        width: 500px;
+        height: 500px;
+
+        .paint__canvas {
+            border-radius: 15px 0 0 15px;
+        }
+    }
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-grow: 1;
+    border: 5px solid lightseagreen;
+    border-radius: 0 15px 15px 0;
+}
+
+.label {
+    text-align: center;
+    padding: 7px 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: lightseagreen;
+    color: azure;
+    width: 200px !important;
+    height: 21px;
+    margin: 5px 0 !important;
+    border-radius: 5px;
+}
+
+
