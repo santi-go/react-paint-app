@@ -27,7 +27,7 @@ class PaintUI extends React.Component {
                 { name: 'white', className: "color-btn white-btn"},
                 
             ],
-            activeColor: { name: 'black', className: "color-btn black-btn"},
+            activeColor: { name: 'black', className: 'color-btn black-btn'},
             widths: [
                 { width: 2, className: "width-btn extra-thin-btn"},
                 { width: 5, className: "width-btn thin-btn"},
