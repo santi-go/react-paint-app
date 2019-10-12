@@ -1,11 +1,27 @@
+import React from 'react';
+import { configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Button from './Button';
 
-describe('<Button/>', () => {
-    it('should have render button element', () => {
-        const className = "color-btn";
-        const wrapper = new Button({ className: className })
+configure({ adapter: new Adapter() });
 
-        expect(wrapper.props.className).toEqual("color-btn");
-    })
+describe('<Button/>', () => {
+    let wrapper = {};
+    let mockButton = {};
+    let className = "class-btn";
+    let mockClickOn = () => {className = "clicked-button"}
+    
+    beforeAll(() => {
+        wrapper = mount(<Button 
+            className={className}
+            onClick={mockClickOn}
+            ></Button>);
+        mockButton = wrapper.instance();
+        
+    });
+
+    it('should have render Button component', () => {
+        expect(wrapper.exists()).toBe(true);
+    });
 })
 
