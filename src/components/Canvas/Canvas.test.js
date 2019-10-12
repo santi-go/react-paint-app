@@ -1,11 +1,31 @@
+import React from 'react';
+import { configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Canvas from './Canvas';
 
-describe('<Canvas/>', () => {
-    it('should have render canvas element', () => {
-        const className = 'canvas';
-        const wrapper = new Canvas({ className: className }).render()
+configure({ adapter: new Adapter() });
 
-        expect(wrapper.props.className).toEqual("canvas");
-    })
+describe('<Canvas/>', () => {
+    let wrapper = {};
+    let mockCanvas = {};
+    const mockCanvasProps = {
+        style: {
+          background: 'powderblue',
+        },
+        brushCol: { name: 'black', className: 'color-btn black-btn'},
+        lineWidth: { width: 5, className: "width-btn thin-btn"},
+        className: 'paint',
+        height: 500,
+        width: 500,
+    }
+    
+    beforeAll(() => {
+        wrapper = mount(<Canvas{...mockCanvasProps}></Canvas>);
+        mockCanvas = wrapper.instance();
+    });
+
+    it('should have render Button component', () => {
+        expect(wrapper.exists()).toBe(true);
+    });
 })
 
