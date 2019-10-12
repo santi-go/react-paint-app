@@ -5,11 +5,6 @@ class Canvas extends React.Component {
     constructor(...props) {
         super(...props);
 
-        this.points = [];
-        this.lastX = 0;
-        this.lastY = 0;
-        this.stroke = 0;
-
         this.state = {
             mouseDown: false,
             mouseLocation: [0, 0],
