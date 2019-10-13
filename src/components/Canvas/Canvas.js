@@ -1,6 +1,6 @@
 import React from 'react';
 import './Canvas.scss'
-import Button from '../Button/Button';
+import UndoRedo from '../UndoRedo/UndoRedo';
 
 class Canvas extends React.Component {
     constructor(...props) {
@@ -202,16 +202,12 @@ class Canvas extends React.Component {
                         onMouseMove={this.mouseMove}
                         onTouchMove={this.mouseMove}
                     />
-                    <Button
-                        className="myButton"
-                        onClick={this.undoLast}
+                    <UndoRedo
+                        className="undo-redo-btn"
+                        unDo={this.undoLast}
+                        reDo={this.redoLast}
                     >
-                    </Button>
-                    <Button
-                        className="myButton"
-                        onClick={this.redoLast}
-                    >
-                    </Button>
+                    </UndoRedo>
             </div>    
         )
     }

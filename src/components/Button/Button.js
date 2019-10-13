@@ -7,7 +7,7 @@ function Button(props){
             className={props.className}
             onClick={props.onClick}
         >
-        <div className={line}></div>    
+        <div className={line}>{props.legend}</div>    
         </button>
     );
 }

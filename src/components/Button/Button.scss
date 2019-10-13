@@ -201,26 +201,23 @@
 	}
 }
 
-.myButton {
-	box-shadow: 0px 0px 0px 2px #9fb4f2;
-	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
-	background-color:#7892c2;
-	border-radius:10px;
-	border:1px solid #4e6096;
+.undo-redo-btn {
+	background-color:lightseagreen;
+	border-radius:5px;
+	border:2px solid rgb(24, 136, 130);
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	font-family:'Source Sans Pro', sans-serif;
 	font-size:19px;
-	padding:12px 37px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #283966;
+	padding:9px 48px;
+	margin: 10px 0;
+    margin-left: 15px;
 }
-.myButton:hover {
-	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
-	background-color:#476e9e;
+.undo-redo-btn:hover {
+	background-color:rgb(24, 136, 130);
 }
-.myButton:active {
+.undo-redo-btn:active {
 	position:relative;
 	top:1px;
 }
