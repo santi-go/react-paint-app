@@ -19,14 +19,6 @@ describe('<PaintUI/>', () => {
         expect(wrapper.exists()).toBe(true);
     });
 
-    it('should have a 16 color palette', () => {
-        expect(mockPaintUI.state.colors.length).toEqual(16);
-    });
-
-    it('should have a 4 brush width selectors', () => {
-        expect(mockPaintUI.state.widths.length).toEqual(4);
-    });
-
     it('should handle ActiveColor state', () => {
         expect(mockPaintUI.state.activeColor).toEqual({ "className": "color-btn black-btn", "name": "black"});
         mockPaintUI.handleActiveColor({ "className": "green-btn black-btn", "name": "green"});
@@ -37,9 +29,6 @@ describe('<PaintUI/>', () => {
         expect(mockPaintUI.state.activeWidth).toEqual({ width: 5, className: "width-btn thin-btn"});
         mockPaintUI.handleActiveWidth({ width: 10, className: "width-btn medium-btn"});
         expect(mockPaintUI.state.activeWidth).toEqual({ width: 10, className: "width-btn medium-btn"});
-    });
-
-    
-    
-})
+    }); 
+});
 

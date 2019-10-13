@@ -18,29 +18,44 @@ describe('<Canvas/>', () => {
         height: 500,
         width: 500,
     }
-    const eventA = {pageX:0, pageY:0};
+    const event = {pageX:0, pageY:0};
     
     beforeAll(() => {
         wrapper = mount(<Canvas{...mockCanvasProps}></Canvas>);
         wrapper.setState({mouseDown: false});
         mockCanvas = wrapper.instance();
-        
     });
 
     it('should have render Button component', () => {
         expect(wrapper.exists()).toBe(true);
     });
 
+    it('should undo last stroke when undoLast is called', () => {
+        mockCanvas.mouseDown(event);
+        expect(mockCanvas.stroke).toBe(1);
+        mockCanvas.undoLast();
+        expect(mockCanvas.stroke).toBe(0);
+    });
+
+    it('should redo last stroke when redoLast is called', () => {
+        mockCanvas.mouseDown(event);
+        expect(mockCanvas.stroke).toBe(1);
+        mockCanvas.undoLast();
+        expect(mockCanvas.stroke).toBe(0);
+        mockCanvas.redoLast();
+        expect(mockCanvas.stroke).toBe(1);
+    });
+
     it('should knows that mouseDown when starts drawing', () => {
-        mockCanvas.mouseDown(eventA);
+        mockCanvas.mouseDown(event);
         expect(mockCanvas.state.mouseDown).toBe(true);   
-    })
+    });
 
     it('should knows that mouseUp when ends drawing', () => {
-        mockCanvas.mouseDown(eventA);
+        mockCanvas.mouseDown(event);
         expect(mockCanvas.state.mouseDown).toBe(true); 
-        mockCanvas.mouseUp(eventA);
+        mockCanvas.mouseUp(event);
         expect(mockCanvas.state.mouseDown).toBe(false);   
-    })
-})
+    }); 
+});
 

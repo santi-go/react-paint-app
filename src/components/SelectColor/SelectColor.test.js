@@ -8,7 +8,7 @@ configure({ adapter: new Adapter() });
 describe ('<SelectColor/>', () =>{
     let wrapper = {};
     let mockSelectColor = {};
-    let mockhandleActiveColor = () => {}
+    let mockHandleActiveColor = () => {};
     let state = {
         colors: [
             { name: 'maroon', className: "color-btn maroon-btn"},
@@ -39,11 +39,15 @@ describe ('<SelectColor/>', () =>{
     };
 
     beforeAll(() => {
-        wrapper = mount(<SelectColor{...state} onClick={mockhandleActiveColor}>></SelectColor>);
-        mockSelectColor = wrapper.instance();   
+        wrapper = mount(<SelectColor{...state} onClick={mockHandleActiveColor}>></SelectColor>);
+        mockSelectColor = wrapper.instance();
     });
 
     it('should have render PaintUI component', () => {
         expect(wrapper.exists()).toBe(true);
     });
-});
+
+    it('should have a 16 color buttons', () => {
+        expect(mockSelectColor.props.colors.length).toEqual(16);
+    });
+ });

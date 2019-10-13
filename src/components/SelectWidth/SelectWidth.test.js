@@ -8,7 +8,7 @@ configure({ adapter: new Adapter() });
 describe ('<SelectWidth/>', () =>{
     let wrapper = {};
     let mockSelectWidth = {};
-    let mockhandleActiveWidth = () => {}
+    let mockHandleActiveWidth = () => {};
     let state = {
         colors: [
             { name: 'maroon', className: "color-btn maroon-btn"},
@@ -39,11 +39,15 @@ describe ('<SelectWidth/>', () =>{
     };
 
     beforeAll(() => {
-        wrapper = mount(<SelectWidth{...state} onClick={mockhandleActiveWidth}>></SelectWidth>);
+        wrapper = mount(<SelectWidth{...state} onClick={mockHandleActiveWidth}>></SelectWidth>);
         mockSelectWidth = wrapper.instance();   
     });
 
     it('should have render PaintUI component', () => {
         expect(wrapper.exists()).toBe(true);
+    });
+
+    it('should have a 4 width buttons', () => {
+        expect(mockSelectWidth.props.widths.length).toEqual(4);
     });
 });

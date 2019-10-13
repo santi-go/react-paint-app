@@ -7,16 +7,14 @@ configure({ adapter: new Adapter() });
 
 describe('<Button/>', () => {
     let wrapper = {};
-    let mockButton = {};
     let className = "class-btn";
-    let mockClickOn = () => {className = "clicked-button"}
+    const mockClickOn = () => {className = "clicked-button"}
     
     beforeAll(() => {
         wrapper = mount(<Button 
             className={className}
             onClick={mockClickOn}
             ></Button>);
-        mockButton = wrapper.instance();
     });
 
     it('should have render Button component', () => {
@@ -31,5 +29,5 @@ describe('<Button/>', () => {
             ></Button>);
         expect(newWrapper.prop('className')).toEqual('clicked-button');
     })
-})
+});
 
