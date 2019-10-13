@@ -7,11 +7,9 @@ class Canvas extends React.Component {
         super(...props);
 
         this.points = [];
-        this.lastX = 0;
-        this.lastY = 0;
         this.stroke = 0;
         this.lastStroke = [];
-
+        
         this.state = {
             mouseDown: false,
             mouseLocation: [0, 0],
@@ -38,8 +36,6 @@ class Canvas extends React.Component {
         const { brushCol, lineWidth} = this.props;
         const mouseX = (e.pageX || e.touches[0].pageX) - this.bb.left;
         const mouseY = (e.pageY || e.touches[0].pageY) - this.bb.top;
-        this.lastX = mouseX;
-        this.lastY = mouseY;
         this.stroke +=1;
 
         if (!this.state.mouseDown) this.setState({ mouseDown: true });
@@ -50,10 +46,6 @@ class Canvas extends React.Component {
         this.setState({
           mouseLocation: [e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY],          
         });
-        
-        this.ctx.beginPath();
-
-        this.ctx.moveTo( mouseX, mouseY);
 
         this.points.push({
             x: mouseX,
@@ -63,6 +55,11 @@ class Canvas extends React.Component {
             mode: "begin",
             stroke: this.stroke
         })
+        
+        this.ctx.beginPath();
+        this.ctx.moveTo( mouseX, mouseY);
+
+        
     }
 
     mouseUp = e => {
@@ -71,7 +68,7 @@ class Canvas extends React.Component {
         const mouseY = (e.pageY || e.touches[0].pageY) - this.bb.top;
 
         this.setState({ mouseDown: false });
-
+        
         this.points.push({
             x: mouseX,
             y: mouseY,
@@ -79,16 +76,13 @@ class Canvas extends React.Component {
             color: brushCol,
             mode: "end",
             stroke: this.stroke
-        });           
+        });
     }
 
     mouseMove = e => {
-        const { brushCol, lineWidth} = this.props;
         const mouseX = (e.pageX || e.touches[0].pageX) - this.bb.left;
         const mouseY = (e.pageY || e.touches[0].pageY) - this.bb.top;
-        this.lastX = mouseX;
-        this.lastY = mouseY;
-
+        
         if (this.state.mouseDown) {
             if (e.touches) e.preventDefault();
 
@@ -100,9 +94,6 @@ class Canvas extends React.Component {
                 this.points.push({
                     x: mouseX,
                     y: mouseY,
-                    size: lineWidth,
-                    color: brushCol,
-                    mode: "draw",
                     stroke: this.stroke
                 });
 
@@ -123,17 +114,18 @@ class Canvas extends React.Component {
         for (var i = 0; i < this.points.length; i++) {
     
             var pt = this.points[i];
-            
             var begin = false;
     
             if (this.ctx.lineWidth !== pt.size) {
                 this.ctx.lineWidth = pt.size;
                 begin = true;
             }
+
             if (this.ctx.strokeStyle !== pt.color) {
                 this.ctx.strokeStyle = pt.color;
                 begin = true;
             }
+
             if (pt.mode === "begin" || begin) {
                 this.ctx.beginPath();
                 this.ctx.moveTo(pt.x, pt.y);
@@ -142,12 +134,10 @@ class Canvas extends React.Component {
             if (pt.mode === "end" || (i === this.points.length - 1)) {
                 this.ctx.stroke();
             }
-            if (pt.mode === "draw") {
-                this.ctx.lineTo(pt.x, pt.y);
-                this.ctx.stroke();
-            }  
+
+            this.ctx.lineTo(pt.x, pt.y);
+            this.ctx.stroke(); 
         }
-        this.ctx.stroke();
     }
 
     findLastBeginIndex = (el) => {
@@ -158,18 +148,14 @@ class Canvas extends React.Component {
         let lastBeginIndex = this.points.findIndex(this.findLastBeginIndex);
         this.lastStroke = this.points.splice(lastBeginIndex);
         this.stroke -= 1;
-        console.log(this.points)
-        console.log(this.lastStroke)
         this.redrawAll();
     }
 
     redoLast() {
         this.points = this.points.concat(this.lastStroke);
-        console.log(this.points)
         this.redrawAll();
         this.lastStroke =[]
-        this.stroke += 1;
-        
+        this.stroke += 1;   
     }
 
     render() {

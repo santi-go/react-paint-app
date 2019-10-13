@@ -21,13 +21,13 @@ class UndoRedo extends React.Component {
                     legend="REDO"
                 ></Button>
             );
-        }
-        
+        }   
     }
 
     render() {
+        const className = "undo-redo"
         return (
-            <div className="undo-redo">
+            <div className={className}>
                 {this.renderDoButton(0)}
                 {this.renderDoButton(1)}
             </div>

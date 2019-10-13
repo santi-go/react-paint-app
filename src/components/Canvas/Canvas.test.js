@@ -21,11 +21,20 @@ describe('<Canvas/>', () => {
     
     beforeAll(() => {
         wrapper = mount(<Canvas{...mockCanvasProps}></Canvas>);
+        wrapper.setState({mouseDown: false});
         mockCanvas = wrapper.instance();
+        
     });
 
     it('should have render Button component', () => {
         expect(wrapper.exists()).toBe(true);
     });
+
+    // it('should handle mouseDown', () => {
+    //     wrapper.prop('onMousedown')();
+        
+    //     expect(wrapper.state('mouseDown')).toBe(true);
+    //     console.log(wrapper.debug())
+    // })
 })
 

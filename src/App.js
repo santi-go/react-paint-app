@@ -4,8 +4,9 @@ import './App.css';
 
 
 const App = () => {
+  const className = "paint-ui";
   return (
-    <PaintUI className="paint-ui"></PaintUI>
+    <PaintUI className={className}></PaintUI>
   );
 }
 

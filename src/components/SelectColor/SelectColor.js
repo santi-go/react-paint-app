@@ -14,9 +14,10 @@ class SelectColor extends React.Component {
 
     render() {
         const label = "SELECT A COLOR:"
+        const className = "select-color";
         return (
-            <div className="select-color">
-                <div className="select-color label">{label}</div>
+            <div className={className}>
+                <div className={`${className} label`}>{label}</div>
                 {this.renderColorButton(0)}
                 {this.renderColorButton(1)}
                 {this.renderColorButton(2)}

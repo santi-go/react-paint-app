@@ -13,10 +13,11 @@ class SelectWidth extends React.Component {
     }
 
     render() {
-        const label = "LINE WEIGHT:"
+        const label = "LINE WEIGHT:";
+        const className = "select-width";
         return (
-            <div className="select-width">
-                <div className="select-width label">{label}</div>
+            <div className={className}>
+                <div className={`${className} label`}>{label}</div>
                 {this.renderWidthButton(0)}
                 {this.renderWidthButton(1)}
                 {this.renderWidthButton(2)}

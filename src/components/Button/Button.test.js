@@ -23,5 +23,10 @@ describe('<Button/>', () => {
     it('should have render Button component', () => {
         expect(wrapper.exists()).toBe(true);
     });
+
+    // it('should call a function when clicked', () => {
+    //     wrapper.prop('onClick')()
+    //     expect(wrapper.prop('className').toBe('clicked-button'))
+    // })
 })
 
