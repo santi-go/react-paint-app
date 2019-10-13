@@ -17,16 +17,19 @@ describe('<Button/>', () => {
             onClick={mockClickOn}
             ></Button>);
         mockButton = wrapper.instance();
-        
     });
 
     it('should have render Button component', () => {
         expect(wrapper.exists()).toBe(true);
     });
 
-    // it('should call a function when clicked', () => {
-    //     wrapper.prop('onClick')()
-    //     expect(wrapper.prop('className').toBe('clicked-button'))
-    // })
+    it('should call the method assign to the onClick prop when clicked', () => {
+        wrapper.prop('onClick')();
+        const newWrapper = mount(<Button 
+            className={className}
+            onClick={mockClickOn}
+            ></Button>);
+        expect(newWrapper.prop('className')).toEqual('clicked-button');
+    })
 })
 

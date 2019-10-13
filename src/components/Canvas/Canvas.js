@@ -34,8 +34,8 @@ class Canvas extends React.Component {
     
     mouseDown = e => {
         const { brushCol, lineWidth} = this.props;
-        const mouseX = (e.pageX || e.touches[0].pageX) - this.bb.left;
-        const mouseY = (e.pageY || e.touches[0].pageY) - this.bb.top;
+        const mouseX = e.pageX - this.bb.left;
+        const mouseY = e.pageY - this.bb.top;
         this.stroke +=1;
 
         if (!this.state.mouseDown) this.setState({ mouseDown: true });
@@ -44,7 +44,7 @@ class Canvas extends React.Component {
         this.ctx.lineWidth = lineWidth;
 
         this.setState({
-          mouseLocation: [e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY],          
+          mouseLocation: {mouseX, mouseY }         
         });
 
         this.points.push({
@@ -64,8 +64,8 @@ class Canvas extends React.Component {
 
     mouseUp = e => {
         const { brushCol, lineWidth} = this.props;
-        const mouseX = (e.pageX || e.touches[0].pageX) - this.bb.left;
-        const mouseY = (e.pageY || e.touches[0].pageY) - this.bb.top;
+        const mouseX = e.pageX - this.bb.left;
+        const mouseY = e.pageY - this.bb.top;
 
         this.setState({ mouseDown: false });
         
@@ -80,15 +80,14 @@ class Canvas extends React.Component {
     }
 
     mouseMove = e => {
-        const mouseX = (e.pageX || e.touches[0].pageX) - this.bb.left;
-        const mouseY = (e.pageY || e.touches[0].pageY) - this.bb.top;
+        const mouseX = e.pageX - this.bb.left;
+        const mouseY = e.pageY - this.bb.top;
         
         if (this.state.mouseDown) {
-            if (e.touches) e.preventDefault();
-
+            
             if (
-                (e.pageX || e.touches[0].pageX) > 0 &&
-                (e.pageY || e.touches[0].pageY) < this.props.height
+                e.pageX > 0 &&
+                e.pageY < this.props.height
             ) {
                 
                 this.points.push({
@@ -180,13 +179,8 @@ class Canvas extends React.Component {
                         }
 
                         onMouseDown={this.mouseDown}
-                        onTouchStart={this.mouseDown}
-
                         onMouseUp={this.mouseUp}
-                        onTouchEnd={this.mouseUp}
-
                         onMouseMove={this.mouseMove}
-                        onTouchMove={this.mouseMove}
                     />
                     <UndoRedo
                         className="undo-redo-btn"
